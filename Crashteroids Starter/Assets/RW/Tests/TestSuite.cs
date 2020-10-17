@@ -78,7 +78,44 @@ public class TestSuite
         // 2
         Assert.AreEqual(game.score, 1);
     }
+    [UnityTest]
+    public IEnumerator GameScoreEqualZero()
+    {
+        game.isGameOver = true;
+        game.NewGame();
+        yield return new WaitForSeconds(0.1f);
 
+        Assert.AreEqual(game.score, 0);
+    }
+
+    [UnityTest]
+    public IEnumerator LaserMovesUp()
+    {
+        //spawn a test laser object and set get its initail pos
+        GameObject laser = game.GetShip().SpawnLaser();
+        float initialYPos = laser.transform.position.y;
+        //wait 0.1 seconds and  check the value is greater eg moving up
+        yield return new WaitForSeconds(0.1f);
+        Assert.Greater(laser.transform.position.y, initialYPos);
+    }
+    [UnityTest]
+    public IEnumerator MoveShipRight()
+    {
+        GameObject ship = game.GetShip().gameObject;
+        float initialXPos = ship.transform.position.x;
+        yield return new WaitForSeconds(0.1f);
+        game.GetShip().MoveRight();
+        Assert.Greater(ship.transform.position.x, initialXPos);
+    }
+    [UnityTest]
+    public IEnumerator MoveShipLeft()
+    {
+        GameObject ship = game.GetShip().gameObject;
+        float initialXPos = ship.transform.position.x;
+        yield return new WaitForSeconds(0.1f);
+        game.GetShip().MoveLeft();
+        Assert.Less(ship.transform.position.x, initialXPos);
+    }
 }
 
 
