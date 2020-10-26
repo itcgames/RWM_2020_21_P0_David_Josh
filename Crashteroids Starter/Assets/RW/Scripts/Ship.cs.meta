@@ -3,7 +3,15 @@ guid: 8e90ffdb59b5c4c49bce401341432982
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - mesh: {instanceID: 0}
+  - explosion: {instanceID: 0}
+  - laser: {instanceID: 0}
+  - shotSpawn: {instanceID: 0}
+  - sheildPrefab: {fileID: 6527015093632706357, guid: aef976442f19168428444161c827eb0f,
+      type: 3}
+  - sheild: {fileID: 6527015093632706357, guid: aef976442f19168428444161c827eb0f,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
