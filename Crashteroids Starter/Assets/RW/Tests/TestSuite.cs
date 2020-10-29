@@ -125,6 +125,24 @@ public class TestSuite
         Assert.AreEqual(ship.GetComponent<Ship>().getShieldStatus(), true);
         yield return null;
     }
+    [UnityTest]
+    public IEnumerator MoveShipUp()
+    {
+        GameObject ship = game.GetShip().gameObject;
+        float initialYPos = ship.transform.position.y;
+        yield return new WaitForSeconds(0.1f);
+        game.GetShip().MoveUp();
+        Assert.Greater(ship.transform.position.y, initialYPos);
+    }
+    [UnityTest]
+    public IEnumerator MoveShipDown()
+    {
+        GameObject ship = game.GetShip().gameObject;
+        float initialYPos = ship.transform.position.y;
+        yield return new WaitForSeconds(0.1f);
+        game.GetShip().MoveDown();
+        Assert.Less(ship.transform.position.y, initialYPos);
+    }
 }
 
 
