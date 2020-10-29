@@ -37,6 +37,7 @@ public class Ship : MonoBehaviour
     public bool isDead = false;
     public float speed = 1;
     public bool canShoot = true;
+    public bool isSheild = false;
 
     [SerializeField]
     private  MeshRenderer mesh;
@@ -46,6 +47,10 @@ public class Ship : MonoBehaviour
     private GameObject laser;
     [SerializeField]
     private Transform shotSpawn;
+    [SerializeField]
+    private GameObject sheildPrefab;
+    [SerializeField]
+    private GameObject sheild;
 
     private float maxLeft = -8;
     private float maxRight = 8;
@@ -70,6 +75,15 @@ public class Ship : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
         {
             MoveRight();
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            if (sheild == null)
+            {
+                spawnShield();
+            }
+            
         }
     }
 
@@ -124,5 +138,23 @@ public class Ship : MonoBehaviour
         explosion.SetActive(false);
         mesh.enabled = true;
         isDead = false;
+    }
+
+    public void spawnShield()
+    {
+        sheild = Instantiate(sheildPrefab);
+    }
+
+    public void setSheild()
+    {
+        isSheild = true;
+    }
+    public void killSheild()
+    {
+        isSheild = false;
+    }
+    public bool getShieldStatus()
+    {
+        return isSheild;
     }
 }

@@ -116,6 +116,15 @@ public class TestSuite
         game.GetShip().MoveLeft();
         Assert.Less(ship.transform.position.x, initialXPos);
     }
+    [UnityTest]
+    public IEnumerator SheildSpawn()
+    {
+        GameObject ship = game.GetShip().gameObject;
+        ship.GetComponent<Ship>().setSheild();
+        //yield return new WaitForSeconds(0.1f);
+        Assert.AreEqual(ship.GetComponent<Ship>().getShieldStatus(), true);
+        yield return null;
+    }
 }
 
 
