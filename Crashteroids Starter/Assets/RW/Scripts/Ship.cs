@@ -49,6 +49,8 @@ public class Ship : MonoBehaviour
 
     private float maxLeft = -8;
     private float maxRight = 8;
+    private float maxUp = 2.0f;
+    private float maxDown = -3.6f;
 
     private void Update()
     {
@@ -70,6 +72,14 @@ public class Ship : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
         {
             MoveRight();
+        }
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            MoveUp();
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            MoveDown();
         }
     }
 
@@ -111,7 +121,22 @@ public class Ship : MonoBehaviour
              transform.position = new Vector3(maxRight, -3.22f, 0);
         }
     }
-
+    public void MoveUp()
+    {
+        transform.Translate(transform.up * Time.deltaTime * speed);
+        if (transform.position.y > maxUp)
+        {
+            transform.position = new Vector3(transform.position.x, maxUp, 0);
+        }
+    }
+    public void MoveDown()
+    {
+        transform.Translate(-transform.up * Time.deltaTime * speed);
+        if (transform.position.y < maxDown)
+        {
+            transform.position = new Vector3(transform.position.x, maxDown, 0);
+        }
+    }
     public void Explode()
     {
         mesh.enabled = false;
